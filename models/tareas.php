@@ -22,7 +22,7 @@ class Tareas {
     }
 
     public function editar_tarea($id, $titulo, $contenido){
-        $sql = "UPDATE tareas SET tarea = ?, descripcion = ?, WHERE id = ?";
+        $sql = "UPDATE tareas SET tarea = ?, descripcion = ? WHERE id = ?";
         $stmt = $this->conexion->prepare($sql);
         $data = $stmt->execute([$titulo, $contenido, $id]);
         return $data;

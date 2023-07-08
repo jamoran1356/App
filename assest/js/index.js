@@ -145,9 +145,9 @@ document.querySelector("#tareas").addEventListener("click", async function(e) {
 
   document.querySelector("#btneditar").addEventListener("click", async function() {
     // Realiza la lógica de edición aquí, por ejemplo:
-    let tareaId = document.querySelector("#id").value;
-    let nuevaTarea = document.querySelector("#tarea").value;
-    let nuevaDescripcion = document.querySelector("#descripcion").value;
+    let tareaId = document.querySelector("#idtxt").value;
+    let nuevaTarea = document.querySelector("#tareatxt").value;
+    let nuevaDescripcion = document.querySelector("#descripciontxt").value;
     const data = new FormData();
     data.append('id', tareaId);
     data.append('tarea', nuevaTarea);
@@ -160,6 +160,10 @@ document.querySelector("#tareas").addEventListener("click", async function(e) {
           cache: 'no-cache',
           body: data,
         });
+        if(resp.status){
+            document.querySelector("#tareas").innerHTML="";
+            getTareas();
+        }
       } catch (error) {
         console.log("Error al procesar " + error);
       }

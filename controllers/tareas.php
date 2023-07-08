@@ -36,7 +36,7 @@ if(empty($_REQUEST['op'])){
         if (isset($_POST)) {
             // Receive the data from the form
             $id = trim($_POST['id']);
-            $titulo = trim($_POST['titulo']);
+            $titulo = trim($_POST['tarea']);
             $contenido = trim($_POST['descripcion']);
     
             // Create a new News object
