@@ -8,21 +8,23 @@ btn.addEventListener('click', async function(e) {
   const tarea = document.getElementById('tarea').value;
   const descripcion = document.getElementById('descripcion').value;
 
-  const param = {
-    tarea: tarea,
-    descripcion: descripcion
-  };
 
-  console.log(param);
+  // Convertir param en FormData
+  const formData = new FormData();
+  formData.append('titulo', tarea);
+  formData.append('contenido', descripcion);
+
   try{
         const resp = await fetch(url, {
-            type: 'POST',
+            method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
-            body: param
+            body: formData // Enviar formData como el cuerpo
         });
-        json = await resp.json();
-        console.log(resp.json);
+        if(resp.status){
+            document.querySelector("#tareas").innerHTML="";
+            getTareas();
+        }
 
     } catch(error){
         console.log("Error al procesar "+error);
@@ -30,14 +32,13 @@ btn.addEventListener('click', async function(e) {
 
 });
 
+
 async function getTareas(){
     try {
         let resp = await fetch("controllers/tareas.php?op=listarTareas");
         json = await resp.json();
-        console.log(json);
         if(json.status){
             let data = json.data;
-            console.log(data);
             data.forEach(item => {
                 let newtr = document.createElement("tr");
                 newtr.id = "row_"+item.id;
