@@ -106,7 +106,7 @@ if(empty($_REQUEST['op'])){
             // Check if the news was added successfully
             if ($rs) {
                 // The page was added successfully, so create a JSON response
-                $arrResp = array('status' => true, 'msg' => 'SUCCESS');
+                $arrResp = array('status' => true, 'msg' => 'SUCCESS', 'data'=> $rs);
                 echo json_encode($arrResp);
             } else {
                 // The page was not added successfully, so create a JSON response

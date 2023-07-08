@@ -107,27 +107,41 @@ document.querySelector("#tareas").addEventListener("click", async function(e) {
   });
 
 
-  function cargarDatosTarea(tareaId) {
+  async function cargarDatosTarea(tareaId) {
     const Data = new FormData();
     Data.append('id', tareaId);
-      fetch("controllers/tareas.php?op=__mostrarTarea", {
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            body: Data,
-      })
-      .then(response => response.json())
-      .then(data => {
-          let tarea = data.data;
-          document.querySelector("#tarea").value = tarea.tarea;
-          document.querySelector("#descripcion").value = tarea.descripcion;
+    
+    try {
+      let resp = await fetch("controllers/tareas.php?op=__mostrarTarea", {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: Data,
+      });
+      
+      let json = await resp.json();
+      
+      if (json.status) {
+        let data = json.data;
+        if (data.length > 0) {
+          let tarea = data[0];
+          document.getElementById("tareatxt").value = tarea.titulo;
+          document.getElementById("descripciontxt").value = tarea.descripcion;
+          document.getElementById("idtxt").value = tarea.id;
+  
           let modal = new bootstrap.Modal(document.querySelector("#editarTarea"));
           modal.show();
-      })
-      .catch(error => {
-          console.log("Ocurrió un error " + error);
-      });
+        } else {
+          console.log("No se encontraron datos de tarea");
+        }
+      } else {
+        console.log("Error en la respuesta del servidor");
+      }
+    } catch(error) {
+      console.log(`Hubo un problema con el servidor: ${error}`);
+    }
   }
+  
 
   document.querySelector("#btneditar").addEventListener("click", async function() {
     // Realiza la lógica de edición aquí, por ejemplo:
