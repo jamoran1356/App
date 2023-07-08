@@ -58,7 +58,7 @@ if(empty($_REQUEST['op'])){
         }
     }
 
-    if ($option == "__borrar") {
+    if ($option == "__eliminar") {
         if (isset($_POST)) {
             // Receive the data from the form
             $id = trim($_POST['id']);
@@ -96,7 +96,25 @@ if(empty($_REQUEST['op'])){
             //}
     }
     
-   
+    if ($option == "__mostrarTarea") {
+        if (isset($_POST)) {
+            // Receive the data from the form
+            $id = trim($_POST['id']);
+            // Create a new News object
+            $tarea = new Tareas();
+            $rs = $tarea->mostrar_tarea_id($id);
+            // Check if the news was added successfully
+            if ($rs) {
+                // The page was added successfully, so create a JSON response
+                $arrResp = array('status' => true, 'msg' => 'SUCCESS');
+                echo json_encode($arrResp);
+            } else {
+                // The page was not added successfully, so create a JSON response
+                $arrResp = array('status' => false, 'msg' => 'ERROR');
+                echo json_encode($arrResp);
+            }
+        }
+    }
 
 
 }

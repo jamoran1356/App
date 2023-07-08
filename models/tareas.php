@@ -31,7 +31,8 @@ class Tareas {
     public function mostrar_tarea_id($id){
         $sql = "SELECT * FROM tareas WHERE id =? ";
         $stmt = $this->conexion->prepare($sql);
-        $data = $stmt->execute([$id]);
+        $stmt->execute([$id]);
+        $data = $stmt -> fetchAll();
         return $data;
         
     }

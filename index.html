@@ -61,6 +61,63 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="mostrarTarea" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar tarea</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="tareas" class="row g-3">
+                <div class="col-md-12">
+                  <label for="tarea" class="form-label">Tarea</label>
+                  <input type="text" class="form-control" id="tarea" name="tarea">
+                </div>
+                <div class="col-12">
+                  <label for="descripcion" class="form-label">Descripcion</label>
+                  <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="btngrabar">Grabar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal -->
+<div class="modal fade" id="editarTarea" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar tarea</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="tareas" class="row g-3">
+                <div class="col-md-12">
+                  <label for="tarea" class="form-label">Tarea</label>
+                  <input type="text" class="form-control" id="tarea" name="tarea">
+                </div>
+                <div class="col-12">
+                  <label for="descripcion" class="form-label">Descripcion</label>
+                  <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="btneditar">Editar</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
     
   <script src="assest/js/bootstrap.bundle.min.js"></script>
   <script src="assest/js/index.js" defer></script>
