@@ -7,6 +7,7 @@
     <!-- Aqui se agregan los estilos -->
     <link rel="stylesheet" href="assest/css/bootstrap.min.css">
     <link rel="stylesheet" href="assest/css/styles.css">
+
 </head>
 <body>
     <!-- Button trigger modal -->
@@ -22,9 +23,9 @@
         <div class="col-md-12">
             <table class="table center mt-50 table-striped table-hover">
                 <thead class="table-dark">
-                  <td scope="col">ID #</td>
-                  <td scope="col">Actividad</td>
-                  <td scope="col">Acciones</td>
+                  <td>ID #</td>
+                  <td>Actividad</td>
+                  <td style="width:280px; text-align: center;">Acciones</td>
         
                 </thead>
                 <tbody id="tareas">
@@ -74,17 +75,16 @@
             <form id="tareas" class="row g-3">
                 <div class="col-md-12">
                   <label for="tarea" class="form-label">Tarea</label>
-                  <input type="text" class="form-control" id="tarea" name="tarea">
+                  <input type="text" class="form-control" id="txttarea" name="txttarea">
                 </div>
                 <div class="col-12">
                   <label for="descripcion" class="form-label">Descripcion</label>
-                  <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+                  <textarea class="form-control" id="txtdescripcion" name="txtdescripcion"></textarea>
                 </div>
               </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="btngrabar">Grabar</button>
         </div>
       </div>
     </div>

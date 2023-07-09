@@ -47,8 +47,9 @@ async function getTareas(){
                     <td>${item.id}</td> 
                     <td>${item.tarea}</td>
                     <td>
-                    <a href="#" class="editar" data-id="${item.id}">Editar</a> |
-                    <a href="#" class="eliminar" data-id="${item.id}">Eliminar</a>
+                    <a href="#" class="detalle btn btn-success" data-id="${item.id}">Detalle</a> 
+                    <a href="#" class="editar btn btn-warning" data-id="${item.id}">Editar</a> 
+                    <a href="#" class="eliminar btn btn-danger" data-id="${item.id}">Eliminar</a>
                     </td>`;
                 document.querySelector("#tareas").appendChild(newtr)
             });
@@ -106,6 +107,15 @@ document.querySelector("#tareas").addEventListener("click", async function(e) {
     }
   });
 
+//ver detalle tarea
+//editar tareas
+document.querySelector("#tareas").addEventListener("click", function(event) {
+  if(event.target.classList.contains("detalle")) {
+    let tareaId = event.target.getAttribute("data-id");
+    detalleTarea(tareaId);
+  }
+});  
+
 
   async function cargarDatosTarea(tareaId) {
     const Data = new FormData();
@@ -130,6 +140,40 @@ document.querySelector("#tareas").addEventListener("click", async function(e) {
           document.getElementById("idtxt").value = tarea.id;
   
           let modal = new bootstrap.Modal(document.querySelector("#editarTarea"));
+          modal.show();
+        } else {
+          console.log("No se encontraron datos de tarea");
+        }
+      } else {
+        console.log("Error en la respuesta del servidor");
+      }
+    } catch(error) {
+      console.log(`Hubo un problema con el servidor: ${error}`);
+    }
+  }
+
+  async function detalleTarea(tareaId) {
+    const Data = new FormData();
+    Data.append('id', tareaId);
+    
+    try {
+      let resp = await fetch("controllers/tareas.php?op=__mostrarTarea", {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: Data,
+      });
+      
+      let json = await resp.json();
+      
+      if (json.status) {
+        let data = json.data;
+        if (data.length > 0) {
+          let tarea = data[0];
+          document.getElementById("txttarea").value = tarea.titulo;
+          document.getElementById("txtdescripcion").value = tarea.descripcion;
+  
+          let modal = new bootstrap.Modal(document.querySelector("#mostrarTarea"));
           modal.show();
         } else {
           console.log("No se encontraron datos de tarea");
