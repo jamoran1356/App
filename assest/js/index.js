@@ -47,9 +47,9 @@ async function getTareas(){
                     <td>${item.id}</td> 
                     <td>${item.tarea}</td>
                     <td>
-                    <a href="#" class="detalle btn btn-success" data-id="${item.id}">Detalle</a> 
-                    <a href="#" class="editar btn btn-warning" data-id="${item.id}">Editar</a> 
-                    <a href="#" class="eliminar btn btn-danger" data-id="${item.id}">Eliminar</a>
+                    <a href="#"><img src="assest/img/detalle.svg" class="detalle btn btn-success" data-id="${item.id}"></a> 
+                    <a href="#"><img src="assest/img/edit.svg"  class="editar btn btn-warning" data-id="${item.id}"></a> 
+                    <a href="#"><img src="assest/img/delete.svg"  class="eliminar btn btn-danger" data-id="${item.id}"></a>
                     </td>`;
                 document.querySelector("#tareas").appendChild(newtr)
             });
